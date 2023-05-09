@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Welcome to My GitHub Page</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <p>This is my new GitHub Page. Thank you for visiting!</p>
-  </body>
+<head>
+    <title>Coffee Brewing Automation System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Coffee Brewing Automation System</h1>
+
+    <h2>Transaction Flow</h2>
+    <p>The Transaction Flow is responsible for handling incoming payments and initiating the brewing process. The flow starts by receiving a payment. The "tesSUCCESS" code is extracted from the "msg.payload.meta.TransactionResult" field. This code signifies a successful transaction. If the transaction is successful, the flow triggers an MQTT command to turn on the kettle. The kettle is set to stay on for 100 seconds, providing enough time to boil the water necessary for brewing the coffee. Concurrently, the received payment amount is converted into grams using a predefined rate (1 gram of coffee costs 7 euro cents or 0.15 XRP), and this gram-value is sent to the Scale Flow.</p>
+
+    <h2>Scale Flow</h2>
+    <p>The Scale Flow is responsible for weighing the coffee grounds and controlling the coffee grinder. The process involves the following steps: The Scale Flow receives the gram-value from the Transaction Flow. It then compares the received gram-value with the actual value measured from the scale. The coffee grinder is activated, and it continues to grind coffee until the specified gram-value is reached. The actual weight is continuously compared with the specified gram-value to ensure precision. Once the required weight is reached, the grinder is turned off via an MQTT command.</p>
+
+    <h2>Conclusion</h2>
+    <p>In conclusion, the system is designed to automate the coffee brewing process. Upon receiving a successful transaction, the kettle is automatically activated to start the brewing process. Concurrently, the coffee grinder is engaged, grinding the coffee until the purchased amount is reached, after which it turns off automatically. This process ensures a seamless and automated coffee brewing experience, providing the precise quantity of coffee paid for by the user.</p>
+</body>
 </html>
